@@ -1,0 +1,17 @@
+body {
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue",
+    Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.25;
+  background-color: #5b5894;
+  height: 100vh;
+  width: 100%;
+}
+
+.container {
+  position: absolute;
+  top: 100px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
