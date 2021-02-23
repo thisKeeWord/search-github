@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import styled from 'styled-components'
+import axios from 'axios'
 
 import Icon from './Icon';
 import SearchResultListItem from './SearchResultListItem';
-import fakeResults from './fake-results';
+
+const url = 'https://api.github.com/search/users'
 
 const SearchBarStyles = styled.div`
   box-shadow: 3px 3px 3px 3px #373850;
@@ -20,6 +22,10 @@ const SearchBarStyles = styled.div`
       border: none;
       box-sizing: border-box;
       flex: 1;
+
+      &:focus {
+        outline: none;
+      }
     }
 
     & > button {
@@ -28,6 +34,10 @@ const SearchBarStyles = styled.div`
       padding: 0;
       background-color: #FF9AAC;
       border: none;
+
+      &:focus {
+        outline: none;
+      }
     }
   }
 
@@ -35,29 +45,39 @@ const SearchBarStyles = styled.div`
     list-style: none;
     padding: 0;
     margin: 0;
-    height: 384px;
+    max-height: 384px;
     overflow-y: scroll;
   }
 `
 
 class SearchBar extends Component {
-
-
   constructor() {
     super();
 
     this.state = {
       searchTerm: '',
       results: [],
+      error: ''
+    }
+
+    this.handleChange = this.handleChange.bind(this);
+    this.toggleResults = this.toggleResults.bind(this);
+
+  }
+
+  async toggleResults(event) {
+    event.preventDefault();
+
+    try {
+      const users = await axios.get(`${url}?q=${this.state.searchTerm}`)
+      this.setState({ results: users.data.items, error: '' })
+    } catch (error) {
+      this.setState({ results: [], error: error.message })
     }
   }
 
-  toggleResults() {
-    if (this.state.results.length === 0) {
-      this.setState({ results: fakeResults });
-    } else {
-      this.setState({ results: [] });
-    }
+  handleChange(event) {
+    this.setState({ searchTerm: event.target.value });
   }
 
   renderResults() {
@@ -78,26 +98,23 @@ class SearchBar extends Component {
       : null
   }
 
-  componentDidMount() {
-    this.toggleResults()
-  }
-
   render() {
-    console.log(this.state.results)
     return (
       <SearchBarStyles>
-        <div className="search">
+        {this.state.error && <span>{this.state.error}</span>}
+        <form className="search" onSubmit={this.toggleResults}>
           <input
             type="text"
             value={this.state.searchTerm}
             placeholder="Search Users"
+            onChange={this.handleChange}
           />
           <button
-            onClick={(event) => this.toggleResults(event)}
+            onClick={this.toggleResults}
           >
             <Icon className="whiteGlass" />
           </button>
-        </div>
+        </form>
         {this.renderResults()}
       </SearchBarStyles>
     );

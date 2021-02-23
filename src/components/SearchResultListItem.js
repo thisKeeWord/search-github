@@ -48,7 +48,7 @@ export default function SearchResultListItem({
 }) {
   return (
     <SearchResultStyles>
-      <a href={githubURL}>
+      <a href={githubURL} target="_blank">
         <img src={avatarURL} alt="avatar" />
         <div className="description">
           <span className="login">{login}</span>
