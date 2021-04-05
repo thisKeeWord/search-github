@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components'
 import axios from 'axios'
-
 import Icon from './Icon';
 import SearchResultListItem from './SearchResultListItem';
 
@@ -10,6 +9,8 @@ const url = 'https://api.github.com/search/users'
 const SearchBarStyles = styled.div`
   box-shadow: 3px 3px 3px 3px #373850;
   width: 50%;
+  box-sizing: border-box;
+  border-radius: 5%;
 
   .search {
     display: flex;
@@ -32,7 +33,7 @@ const SearchBarStyles = styled.div`
       height: 48px;
       width: 48px;
       padding: 0;
-      background-color: #FF9AAC;
+      background-color: lightgreen;
       border: none;
 
       &:focus {
@@ -106,7 +107,7 @@ class SearchBar extends Component {
           <input
             type="text"
             value={this.state.searchTerm}
-            placeholder="Search Users"
+            placeholder="Enter a github username..."
             onChange={this.handleChange}
           />
           <button

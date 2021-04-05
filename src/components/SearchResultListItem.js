@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
 
-
 const SearchResultStyles = styled.li`
   background-color: #F2F2F6;
   height: 96px;
@@ -11,7 +10,6 @@ const SearchResultStyles = styled.li`
   a {
     display: flex;
     text-decoration: none;
-
 
     &:hover {
       background-color: #EBECEE;
@@ -44,7 +42,6 @@ export default function SearchResultListItem({
   login,
   avatarURL,
   githubURL,
-  type
 }) {
   return (
     <SearchResultStyles>
