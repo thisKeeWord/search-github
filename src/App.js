@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import SearchBar from './components/SearchBar';
+import React, { Component } from 'react'
+import SearchBar from './components/SearchBar'
 import './App.css'
 
 class App extends Component {
@@ -9,8 +9,8 @@ class App extends Component {
         <h3>Github Search</h3>
         <SearchBar />
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import styled from 'styled-components'
 
 const SearchResultStyles = styled.li`
@@ -53,5 +53,5 @@ export default function SearchResultListItem({
         </div>
       </a>
     </SearchResultStyles>
-  );
+  )
 }

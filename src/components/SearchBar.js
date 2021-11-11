@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
-import Icon from './Icon';
-import SearchResultListItem from './SearchResultListItem';
+import Icon from './Icon'
+import SearchResultListItem from './SearchResultListItem'
 
 const url = 'https://api.github.com/search/users'
 
@@ -53,7 +53,7 @@ const SearchBarStyles = styled.div`
 
 class SearchBar extends Component {
   constructor() {
-    super();
+    super()
 
     this.state = {
       searchTerm: '',
@@ -61,13 +61,13 @@ class SearchBar extends Component {
       error: ''
     }
 
-    this.handleChange = this.handleChange.bind(this);
-    this.toggleResults = this.toggleResults.bind(this);
+    this.handleChange = this.handleChange.bind(this)
+    this.toggleResults = this.toggleResults.bind(this)
 
   }
 
   async toggleResults(event) {
-    event.preventDefault();
+    event.preventDefault()
 
     try {
       const users = await axios.get(`${url}?q=${this.state.searchTerm}`)
@@ -78,7 +78,7 @@ class SearchBar extends Component {
   }
 
   handleChange(event) {
-    this.setState({ searchTerm: event.target.value });
+    this.setState({ searchTerm: event.target.value })
   }
 
   renderResults() {
@@ -118,8 +118,8 @@ class SearchBar extends Component {
         </form>
         {this.renderResults()}
       </SearchBarStyles>
-    );
+    )
   }
 }
 
-export default SearchBar;
+export default SearchBar
